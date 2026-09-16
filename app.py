@@ -428,7 +428,7 @@ def scrape_all():
 
         for url in urls:
 
-            try:
+        try:
         if (
             network == "SBS"
             and "top-new-tv-series" in url
