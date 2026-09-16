@@ -103,26 +103,93 @@ def clean_program_title(network, title, url=""):
 
     return title
     
-def load_programs():
-    if not os.path.exists(DATABASE_FILE):
-        return []
+def init_database():
+    import sqlite3
 
-    try:
-        with open(DATABASE_FILE, "r", encoding="utf-8") as file:
-            return json.load(file)
-    except Exception:
-        return []
+    connection = sqlite3.connect(DATABASE_FILE)
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS programs (
+            id TEXT PRIMARY KEY,
+            network TEXT,
+            title TEXT,
+            description TEXT,
+            url TEXT,
+            first_seen TEXT,
+            new INTEGER
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
+
+def load_programs():
+    import sqlite3
+
+    init_database()
+
+    connection = sqlite3.connect(DATABASE_FILE)
+
+    rows = connection.execute("""
+        SELECT
+            id,
+            network,
+            title,
+            description,
+            url,
+            first_seen,
+            new
+        FROM programs
+    """).fetchall()
+
+    connection.close()
+
+    return [
+        {
+            "id": row[0],
+            "network": row[1],
+            "title": row[2],
+            "description": row[3],
+            "url": row[4],
+            "first_seen": row[5],
+            "new": bool(row[6])
+        }
+        for row in rows
+    ]
 
 
 def save_programs(programs):
-    with open(DATABASE_FILE, "w", encoding="utf-8") as file:
-        json.dump(
-            programs,
-            file,
-            indent=2,
-            ensure_ascii=False
-        )
+    import sqlite3
 
+    init_database()
+
+    connection = sqlite3.connect(DATABASE_FILE)
+
+    for program in programs:
+        connection.execute("""
+            INSERT OR REPLACE INTO programs (
+                id,
+                network,
+                title,
+                description,
+                url,
+                first_seen,
+                new
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            program["id"],
+            program["network"],
+            program["title"],
+            program["description"],
+            program["url"],
+            program["first_seen"],
+            int(program["new"])
+        ))
+
+    connection.commit()
+    connection.close()
 def make_id(network, url, title):
     value = network + "|" + url + "|" + title
     return hashlib.sha256(
