@@ -185,10 +185,9 @@ def looks_like_program(network, title, url):
             "/tv/watchoutfor"
         ]):
             return False
-
-        # Keep ABC iview program pages
-        if "iview.abc.net.au" not in url_lower:
-            return False
+# Keep only actual ABC iview program pages
+if "iview.abc.net.au/show/" not in url_lower:
+    return False
 
         # Ignore iview collections and general pages
         if any(part in url_lower for part in [
