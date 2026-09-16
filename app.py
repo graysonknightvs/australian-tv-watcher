@@ -528,3 +528,12 @@ if __name__ == "__main__":
             )
         )
     )
+    
+@app.route("/api/scan")
+def scan():
+    new_items = scrape_all()
+
+    return jsonify({
+        "new_programs": new_items,
+        "count": len(new_items)
+    })
