@@ -375,6 +375,18 @@ def scrape_sbs_announcement(url):
         description = " ".join(
             description_parts
         )
+                # Remove duplicated image-credit text
+        if description.count("Credit:") >= 1:
+            credit_pos = description.find("Credit:")
+            after_credit = description.find(
+                "Credit:",
+                credit_pos + 7
+            )
+
+            if after_credit != -1:
+                description = description[
+                    after_credit + 7:
+                ].strip()
         # Ignore program-card metadata such as
         # "series • Drama • MA15+"
                 if (
