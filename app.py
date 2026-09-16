@@ -402,7 +402,7 @@ def scrape_sbs_announcement(url):
                 ].strip()
         # Ignore program-card metadata such as
         # "series • Drama • MA15+"
-                if (
+            if (
             len(description) < 100
             or description.lower().startswith("series •")
         ):
