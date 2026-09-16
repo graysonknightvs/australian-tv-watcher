@@ -402,8 +402,22 @@ def scrape_sbs_announcement(url):
                 ].strip()
         # Ignore program-card metadata such as
         # "series • Drama • MA15+"
-            if (
+        if (
             len(description) < 100
+            or description.lower().startswith("series •")
+        ):
+            continue
+
+        # Remove repeated text before the actual synopsis
+        words = description.split()
+
+        for i in range(1, len(words) // 2):
+        half = " ".join(words[:i])
+        rest = " ".join(words[i:])
+
+            if rest.startswith(half):
+                description = rest
+                break
             or description.lower().startswith("series •")
         ):
             continue
