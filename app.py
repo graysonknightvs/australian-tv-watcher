@@ -171,7 +171,7 @@ def looks_like_program(network, title, url):
     if any(part in url_lower for part in bad_url_parts):
         return False
 
-       # ABC
+           # ABC
     if network == "ABC":
         if "abc.net.au" not in url_lower:
             return False
@@ -185,9 +185,10 @@ def looks_like_program(network, title, url):
             "/tv/watchoutfor"
         ]):
             return False
-# Keep only actual ABC iview program pages
-if "iview.abc.net.au/show/" not in url_lower:
-    return False
+
+        # Keep only actual ABC iview program pages
+        if "iview.abc.net.au/show/" not in url_lower:
+            return False
 
         # Ignore iview collections and general pages
         if any(part in url_lower for part in [
