@@ -49,13 +49,34 @@ IGNORE_WORDS = [
 
 # Titles that are clearly website navigation rather than programs
 IGNORE_TITLES = [
-    "home", "search", "menu", "login", "sign in",
-    "about us", "contact us", "careers",
-    "privacy", "terms", "accessibility",
-    "stream now", "watch now", "watch live",
-    "skip advertisement", "subscribe",
-    "more", "learn more", "read more",
-    "view all", "see all"
+    "home",
+    "search",
+    "menu",
+    "login",
+    "sign in",
+    "about us",
+    "contact us",
+    "careers",
+    "privacy",
+    "terms",
+    "accessibility",
+    "stream now",
+    "stream free",
+    "watch now",
+    "watch live",
+    "skip advertisement",
+    "subscribe",
+    "more",
+    "learn more",
+    "read more",
+    "view all",
+    "see all",
+    "announcement",
+    "interview",
+    "collection",
+    "viewing guide",
+    "what to watch"
+
 ]
 
 
