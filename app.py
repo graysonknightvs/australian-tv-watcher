@@ -86,27 +86,21 @@ def clean_text(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def clean_program_title(network, title):
+def clean_program_title(network, title, url=""):
     title = clean_text(title)
 
     if network == "SBS":
-        # SBS often puts the actual program title in quotation marks
-        match = re.search(r"'([^']+)'", title)
+        # SBS program URLs contain the clean program slug
+        match = re.search(r"/tv-series/([^/?#]+)", url.lower())
 
         if match:
-            return match.group(1).strip()
+            slug = match.group(1)
+
+            # Turn "party-down" into "Party Down"
+            return slug.replace("-", " ").title()
 
     return title
-
-    if network == "SBS":
-        # SBS often puts the actual program title in quotation marks
-        match = re.search(r"'([^']+)'", title)
-
-        if match:
-            return match.group(1).strip()
-
-    return title
-
+    
 def load_programs():
     if not os.path.exists(DATA_FILE):
         return []
@@ -287,7 +281,8 @@ def scrape_source(network, url):
 
         title = clean_program_title(
             network,
-            raw_title
+            raw_title,
+            href
         )
 
         if len(title) < 3 or len(title) > 150:
