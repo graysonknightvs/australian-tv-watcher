@@ -26,8 +26,9 @@ SOURCES = {
         "https://help.abc.net.au/hc/en-us/articles/11774354457871-Latest-program-announcements"
     ],
     "SBS": [
-        "https://www.sbs.com.au/whats-on"
-    ],
+    "https://www.sbs.com.au/whats-on",
+    "https://www.sbs.com.au/whats-on/collection/tv-shows"
+],
     "10": [
         "https://10.com.au/"
     ]
