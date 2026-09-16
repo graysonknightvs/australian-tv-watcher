@@ -10,7 +10,7 @@ import re
 
 app = Flask(__name__)
 
-DATA_FILE = "programs.json"
+DATABASE_FILE = "programs.DB"
 
 HEADERS = {
     "User-Agent": (
