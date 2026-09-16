@@ -80,12 +80,23 @@ IGNORE_TITLES = [
 ]
 
 
-def clean_text(text):
+def clean_text(def clean_text(text):
     if not text:
         return ""
     return re.sub(r"\s+", " ", text).strip()
+
+
 def clean_program_title(network, title):
     title = clean_text(title)
+
+    if network == "SBS":
+        # SBS often puts the actual program title in quotation marks
+        match = re.search(r"'([^']+)'", title)
+
+        if match:
+            return match.group(1).strip()
+
+    return title
 
     if network == "SBS":
         # SBS often puts the actual program title in quotation marks
