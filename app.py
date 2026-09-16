@@ -108,21 +108,20 @@ def load_programs():
         return []
 
     try:
-        with open(DATA_FILE, "r", encoding="utf-8") as file:
+        with open(DATABASE_FILE, "r", encoding="utf-8") as file:
             return json.load(file)
     except Exception:
         return []
 
 
 def save_programs(programs):
-    with open(DATA_FILE, "w", encoding="utf-8") as file:
+    with open(DATABASE_FILE, "w", encoding="utf-8") as file:
         json.dump(
             programs,
             file,
             indent=2,
             ensure_ascii=False
         )
-
 
 def make_id(network, url, title):
     value = network + "|" + url + "|" + title
