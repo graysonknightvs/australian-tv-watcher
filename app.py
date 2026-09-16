@@ -169,7 +169,7 @@ def looks_like_program(network, title, url):
             return False
 
         if not any(part in url_lower for part in [
-            "/ondemand/",
+            "/ondemand/tv-series/",
             "/whats-on/"
         ]):
             return False
