@@ -486,8 +486,13 @@ def home():
     """
 
 
-@app.route("/api/scan")
-def scan():
+@app.route("/api/test-sbs")
+def test_sbs():
+    url = "https://www.sbs.com.au/whats-on/article/top-new-tv-series-to-watch-this-september-2026/pqhttdrab"
+
+    results = scrape_sbs_announcement(url)
+
+    return jsonify(results)
 
     new_items = scrape_all()
 
