@@ -429,10 +429,16 @@ def scrape_all():
         for url in urls:
 
             try:
-                items = scrape_source(
-                    network,
-                    url
-                )
+        if (
+            network == "SBS"
+            and "top-new-tv-series" in url
+        ):
+            items = scrape_sbs_announcement(url)
+        else:
+            items = scrape_source(
+                network,
+                url
+            )
 
                 for item in items:
 
