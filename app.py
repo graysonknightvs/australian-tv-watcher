@@ -80,7 +80,7 @@ IGNORE_TITLES = [
 ]
 
 
-def clean_text(def clean_text(text):
+def clean_text(text):
     if not text:
         return ""
     return re.sub(r"\s+", " ", text).strip()
