@@ -375,7 +375,20 @@ def scrape_sbs_announcement(url):
         description = " ".join(
             description_parts
         )
-                # Remove duplicated image-credit text
+        # Remove repeated image captions
+        sentences = re.split(
+            r"(?<=[.!?])\s+",
+            description
+        )
+
+        if len(sentences) >= 3:
+            first = sentences[0].strip()
+
+            if sentences[1].strip() == first:
+                description = " ".join(
+                    sentences[2:]
+                ).strip()
+        # Remove duplicated image-credit text
         if description.count("Credit:") >= 1:
             credit_pos = description.find("Credit:")
             after_credit = description.find(
