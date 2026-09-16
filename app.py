@@ -104,7 +104,7 @@ def clean_program_title(network, title, url=""):
     return title
     
 def load_programs():
-    if not os.path.exists(DATA_FILE):
+    if not os.path.exists(DATABASE_FILE):
         return []
 
     try:
