@@ -326,11 +326,12 @@ def scrape_sbs_announcement(url):
     results = []
 
     for heading in soup.find_all(["h2", "h3"]):
+
         title = clean_text(
             heading.get_text(" ", strip=True)
         )
 
-                if not title:
+        if not title:
             continue
 
         # Ignore article and website navigation headings
@@ -357,49 +358,7 @@ def scrape_sbs_announcement(url):
         description_parts = []
 
         for element in heading.find_all_next():
-            if element.name in ["h2", "h3"]:
-                break
 
-            text = clean_text(
-                element.get_text(" ", strip=True)
-            )
-
-            if text:
-                description_parts.append(text)
-
-            if len(description_parts) >= 3:
-                break
-
-        description = " ".join(
-            description_parts
-        )
-
-        results.append({
-            "network": "SBS",
-            "title": title,
-            "description": description,
-            "url": url
-        })
-
-        return results
-
-
-def scrape_sbs_announcement(url):
-    soup = fetch_page(url)
-    results = []
-
-    for heading in soup.find_all(["h2", "h3"]):
-        title = clean_text(
-            heading.get_text(" ", strip=True)
-        )
-
-        if not title:
-            continue
-
-        # Look at the text following this heading
-        description_parts = []
-
-        for element in heading.find_all_next():
             if element.name in ["h2", "h3"]:
                 break
 
@@ -425,7 +384,6 @@ def scrape_sbs_announcement(url):
         })
 
     return results
-
 
 def scrape_all():
     existing = load_programs()
