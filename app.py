@@ -388,20 +388,7 @@ def scrape_sbs_announcement(url):
                 description = " ".join(
                     sentences[2:]
                 ).strip()
-        # Remove duplicated image-credit text
-        if description.count("Credit:") >= 1:
-            credit_pos = description.find("Credit:")
-            after_credit = description.find(
-                "Credit:",
-                credit_pos + 7
-            )
-
-            if after_credit != -1:
-                description = description[
-                    after_credit + 7:
-                ].strip()
-        # Ignore program-card metadata such as
-        # "series • Drama • MA15+"
+        # Ignore program-card metadata
         if (
             len(description) < 100
             or description.lower().startswith("series •")
@@ -412,15 +399,12 @@ def scrape_sbs_announcement(url):
         words = description.split()
 
         for i in range(1, len(words) // 2):
-        half = " ".join(words[:i])
-        rest = " ".join(words[i:])
+            half = " ".join(words[:i])
+            rest = " ".join(words[i:])
 
             if rest.startswith(half):
                 description = rest
                 break
-            or description.lower().startswith("series •")
-        ):
-            continue
         results.append({
             "network": "SBS",
             "title": title,
