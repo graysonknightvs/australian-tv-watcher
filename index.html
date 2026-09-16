@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Australian TV Watcher</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #101116;
+            color: white;
+            margin: 0;
+        }
+
+        header {
+            background: #1b1d24;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            background: #333743;
+            color: white;
+        }
+
+        button:hover {
+            background: #4a4f5c;
+        }
+
+        .program {
+            background: #1c1f27;
+            border: 1px solid #30343e;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .network {
+            display: inline-block;
+            background: #444955;
+            border-radius: 5px;
+            padding: 5px 9px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .new {
+            display: inline-block;
+            background: #32d583;
+            color: #07150d;
+            border-radius: 5px;
+            padding: 5px 9px;
+            margin-left: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .program h2 {
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #c5c7cd;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #70b7ff;
+        }
+
+        #status {
+            color: #999;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📺 Australian TV Watcher</h1>
+    <div class="subtitle">
+        ABC • SBS • 10
+    </div>
+</header>
+
+<main>
+
+    <div class="controls">
+
+        <button onclick="showAll()">
+            All
+        </button>
+
+        <button onclick="showNetwork('ABC')">
+            ABC
+        </button>
+
+        <button onclick="showNetwork('SBS')">
+            SBS
+        </button>
+
+        <button onclick="showNetwork('10')">
+            10
+        </button>
+
+    </div>
+
+    <div id="status">
+        Loading programs...
+    </div>
+
+    <div id="programs">
+
+        <div class="program">
+
+            <span class="network">
+                ABC
+            </span>
+
+            <span class="new">
+                NEW
+            </span>
+
+            <h2>
+                Your TV watcher is ready!
+            </h2>
+
+            <p class="description">
+                We're going to connect this page to ABC,
+                SBS and 10 in the next step.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+
+function showAll() {
+    document.getElementById("status").textContent =
+        "Showing ABC, SBS and 10";
+}
+
+function showNetwork(network) {
+    document.getElementById("status").textContent =
+        "Showing " + network;
+}
+
+</script>
+
+</body>
+</html>
