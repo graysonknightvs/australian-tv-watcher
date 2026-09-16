@@ -84,7 +84,17 @@ def clean_text(text):
     if not text:
         return ""
     return re.sub(r"\s+", " ", text).strip()
+def clean_program_title(network, title):
+    title = clean_text(title)
 
+    if network == "SBS":
+        # SBS often puts the actual program title in quotation marks
+        match = re.search(r"'([^']+)'", title)
+
+        if match:
+            return match.group(1).strip()
+
+    return title
 
 def load_programs():
     if not os.path.exists(DATA_FILE):
@@ -260,8 +270,13 @@ def scrape_source(network, url):
 
     for link in soup.find_all("a", href=True):
 
-        title = clean_text(
+                raw_title = clean_text(
             link.get_text(" ", strip=True)
+        )
+
+        title = clean_program_title(
+            network,
+            raw_title
         )
 
         if len(title) < 3 or len(title) > 150:
