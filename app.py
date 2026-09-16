@@ -426,7 +426,7 @@ def scrape_all():
 
     for network, urls in SOURCES.items():
 
-        for url in urls:
+        for url in urls:    
 
         try:
         if (
