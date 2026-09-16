@@ -330,10 +330,11 @@ def scrape_sbs_announcement(url):
             heading.get_text(" ", strip=True)
         )
 
-        if not title:
+                if not title:
             continue
-            # Ignore article and website navigation headings
-            if title.lower() in [
+
+        # Ignore article and website navigation headings
+        if title.lower() in [
             "stream now on demand",
             "follow sbs",
             "download our apps",
@@ -346,6 +347,10 @@ def scrape_sbs_announcement(url):
             continue
 
         if title.lower().startswith("series coming to sbs"):
+            continue
+
+        # Ignore the article's large introductory heading
+        if len(title) > 120:
             continue
 
         # Look at the text following this heading
