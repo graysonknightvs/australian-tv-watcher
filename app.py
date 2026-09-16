@@ -418,10 +418,7 @@ def scrape_all():
                         network,
                         url
                     )
-                network,
-                url
-            )
-
+               
                 for item in items:
 
                     item_id = make_id(
