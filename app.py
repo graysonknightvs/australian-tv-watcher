@@ -349,7 +349,14 @@ def scan():
         "count": len(new_items)
     })
 
+@app.route("/api/reset")
+def reset():
+    save_programs([])
 
+    return jsonify({
+        "status": "reset",
+        "message": "All saved programs have been cleared."
+    })
 @app.route("/api/programs")
 def programs():
 
