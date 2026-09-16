@@ -27,7 +27,8 @@ SOURCES = {
     ],
     "SBS": [
     "https://www.sbs.com.au/whats-on",
-    "https://www.sbs.com.au/whats-on/collection/tv-shows"
+    "https://www.sbs.com.au/whats-on/collection/tv-shows",
+    "https://www.sbs.com.au/whats-on/article/top-new-tv-series-to-watch-this-september-2026/pqhttdrab"
 ],
     "10": [
         "https://10.com.au/"
