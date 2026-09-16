@@ -171,16 +171,29 @@ def looks_like_program(network, title, url):
     if any(part in url_lower for part in bad_url_parts):
         return False
 
-    # ABC
+       # ABC
     if network == "ABC":
         if "abc.net.au" not in url_lower:
             return False
 
-        # ABC program pages commonly contain these paths
-        if not any(part in url_lower for part in [
+        # Ignore ABC TV guide and navigation pages
+        if any(part in url_lower for part in [
             "/tv/",
-            "/iview/",
-            "/programs/"
+            "/tv/epg",
+            "/tv/guide",
+            "/tv/classification",
+            "/tv/watchoutfor"
+        ]):
+            return False
+
+        # Keep ABC iview program pages
+        if "iview.abc.net.au" not in url_lower:
+            return False
+
+        # Ignore iview collections and general pages
+        if any(part in url_lower for part in [
+            "/collection/",
+            "/shows"
         ]):
             return False
 
