@@ -275,20 +275,20 @@ def scrape_source(network, url):
 
     for link in soup.find_all("a", href=True):
 
-href = urljoin(
-    url,
-    link["href"]
-)
+        href = urljoin(
+            url,
+            link["href"]
+        )
 
-raw_title = clean_text(
-    link.get_text(" ", strip=True)
-)
+        raw_title = clean_text(
+            link.get_text(" ", strip=True)
+        )
 
-title = clean_program_title(
-    network,
-    raw_title,
-    href
-)
+        title = clean_program_title(
+            network,
+            raw_title,
+            href
+        )
 
         if len(title) < 3 or len(title) > 150:
             continue
